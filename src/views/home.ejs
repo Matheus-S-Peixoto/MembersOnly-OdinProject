@@ -1,18 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/styles.css" />
-    <title>HomePage</title>
+    <%- include('./partials/head.ejs') %>
   </head>
   <body>
-    <nav>
-      <a href="/auth/register">Register</a>
-      <a href="/auth/login">Login</a>
-    </nav>
-
     <div class="message-pane">
+      <%- include('./partials/nav.ejs') %>
+
       <h2>username</h2>
       <textarea class="message-text" style="resize: none" disabled>
         blablalbalba

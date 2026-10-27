@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head.ejs') %>
+  </head>
+  <body>
+    <%- include('./partials/nav.ejs') %>
+
+    <div class="register-pane">
+      <h1 class="register-title">Please Register</h1>
+
+      <form class="register-form" action="/auth/register" method="post">
+        <label for="prefname">Prefered Name</label>
+        <input id="prefname" name="prefname" placeholder="Name..." type="text" />
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" placeholder="Username..." />
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>
