@@ -44,6 +44,7 @@ jspm_packages/
 
 # prettierconfig
 .prettierrc
+.prettierignore
 
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/
