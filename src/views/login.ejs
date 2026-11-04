@@ -9,16 +9,20 @@
     <div class="register-pane">
       <h1 class="register-title">Login</h1>
 
-      <form class="register-form" action="/auth/register" method="post">
+      <form class="register-form" action="/auth/login" method="post">
         <div class="form-group">
           <label for="username">Username</label>
-          <input type="text" name="username" id="username" placeholder="Username..." />
+          <input type="text" name="username" id="username" placeholder="Username..." value="<%= locals.formData?.username || '' %>"/>
         </div>
 
         <div class="form-group">
           <label for="password">Password</label>
           <input type="password" name="password" id="password" />
         </div>
+        
+        <% if (locals.error) { %>
+          <p class="error-message"><%= error %></p>
+        <% } %>
         
         <button type="submit">Submit</button>
       </form>

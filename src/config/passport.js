@@ -10,7 +10,7 @@ const verifyCallback = async (username, password, done) => {
       return done(null, false, { message: 'Invalid username or password' });
     }
 
-    const passwordMatch = await verifyPassword(password);
+    const passwordMatch = await verifyPassword(password, user.password);
     if (!passwordMatch) {
       return done(null, false, { message: 'Invalid username or password' });
     }

@@ -12,7 +12,7 @@
       <form class="register-form" action="/auth/register" method="post">
         <div class="form-group">
           <label for="prefname">Prefered Name</label>
-          <input id="prefname" name="prefname" placeholder="Name..." type="text" />
+          <input id="prefname" name="prefname" placeholder="Name..." type="text" value="<%= locals.formData?.prefname || '' %>"/>
 
           <% if (locals.errors?.prefname) { %>
             <% errors.prefname.forEach((error) => { %>
@@ -23,7 +23,7 @@
 
         <div class="form-group">
           <label for="username">Username</label>
-          <input type="text" name="username" id="username" placeholder="Username..." />
+          <input type="text" name="username" id="username" placeholder="Username..." value="<%= locals.formData?.username || '' %>"/>
 
           <% if (locals.errors?.username) { %>
             <% errors.username.forEach((error) => { %>
