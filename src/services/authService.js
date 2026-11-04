@@ -1,17 +1,17 @@
-import * as authRepository from '../repository/userRepository.js';
+import * as userRepository from '../repository/userRepository.js';
 import { hashPassword } from './passwordService.js';
 
 export const findUserByUsername = async (username) => {
-  return await authRepository.findByUsername(username);
+  return await userRepository.findByUsername(username);
 };
 
 export const findUserById = async (id) => {
-  return await authRepository.findById(id);
+  return await userRepository.findById(id);
 };
 
 export const registerNewUser = async (username, password, prefname) => {
   //verify if the username already exists on the db
-  const usernameInUse = await authRepository.isUsernameInUse(username);
+  const usernameInUse = await userRepository.isUsernameInUse(username);
 
   if (usernameInUse) {
     throw new Error('Username already in use');
@@ -21,5 +21,5 @@ export const registerNewUser = async (username, password, prefname) => {
   const hashedPassword = await hashPassword(password);
 
   //save the user to the db
-  await authRepository.createNewUser(prefname, username, hashedPassword);
+  await userRepository.createNewUser(prefname, username, hashedPassword);
 };

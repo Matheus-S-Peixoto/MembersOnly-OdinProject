@@ -4,6 +4,7 @@ import {
   postRegisterUser,
   getLoginPage,
   postLoginUser,
+  getLogout,
 } from '../controllers/authController.js';
 import { validadeNewUser } from '../middlewares/validations.js';
 import { authenticateUser } from '../middlewares/authenticate.js';
@@ -19,5 +20,7 @@ router.post('/register', validadeNewUser, postRegisterUser);
 
 router.get('/login', getLoginPage);
 router.post('/login', authenticateUser, postLoginUser);
+
+router.get('/logout', getLogout);
 
 export default router;

@@ -1,7 +1,30 @@
 <nav>
-  <a href="/auth/register">Register</a>
-  <a href="/auth/login">Login</a>
-  <% if(locals.title !== 'Home Page') { %>
-    <a href="/posts/">Home</a>  
+  <% if(locals.user && user.isadmin) { %>
+    
+  <% } else if(locals.user && !user.isadmin) { %>
+    <% if(locals.title !== 'Join the Club') { %>
+      <a href="/posts/join-club">Join the Club</a>
+    <% } %>  
+    
+    <a href="/auth/logout">Logout</a>
+
+    <% if(locals.title !== 'Home Page') { %>
+      <a href="/posts/">Home</a>  
+    <% } %>
+
+  <% } else { %>
+    
+    <% if(locals.title !== 'Register') { %>
+      <a href="/auth/register">Register</a>
+    <% } %>  
+
+    <% if(locals.title !== 'Login') { %>
+      <a href="/auth/login">Login</a>
+    <% } %>
+
+    <% if(locals.title !== 'Home Page') { %>
+      <a href="/posts/">Home</a>  
+    <% } %>
+
   <% } %>
 </nav>

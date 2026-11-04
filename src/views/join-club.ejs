@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('./partials/head.ejs') %>
+</head>
+<body>
+  <%- include('./partials/nav.ejs') %>
+
+  <% if (!user) { %>
+    <h1>UNAUTHORIZED.</h1>
+  <% } else if (user.isadmin) { %>
+    <h1>You're already an admin!</h1>
+  <% } else { %>  
+    <h1>DO YOU REALY WANT TO A PART OF THIS????</h1>
+    <h2>ARE YOU SURE????</h2>
+    <h3>OK...</h3>
+    <h4>if you guess our secret passcode you're in!</h4>
+
+    <form class="register-form" action="/posts/join-club" method="post">
+      <div class="form-group">
+        <label for="passcode">Passcode</label>
+        <input type="text" name="passcode" id="passcode" placeholder="Violets are green..." value="<%= locals.formData?.passcode || '' %>"/>
+      </div>
+        
+      <button type="submit">Submit</button>
+    </form>
+
+    <% if (locals.message) { %>
+      <h3><%= message %></h3>
+    <% } %>  
+  <% } %>  
+
+  
+</body>
+</html>

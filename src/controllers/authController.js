@@ -7,6 +7,7 @@ import * as authService from '../services/authService.js';
 export const getRegisterPage = (req, res) => {
   res.render('register', {
     title: 'Register',
+    user: req.user,
   });
 };
 
@@ -14,6 +15,16 @@ export const getRegisterPage = (req, res) => {
 export const getLoginPage = (req, res) => {
   res.render('login', {
     title: 'Login',
+    user: req.user,
+  });
+};
+
+//GET LOGOUT
+export const getLogout = (req, res, next) => {
+  req.logout((err) => {
+    if (err) return next(err);
+
+    res.redirect('/');
   });
 };
 
