@@ -2,8 +2,10 @@ import express from 'express';
 import path from 'node:path';
 import session from 'express-session';
 import connect_pg from 'connect-pg-simple';
+import passport from 'passport';
 import routes from './routes/routesIndex.js';
 import { pool } from './db/pool.js';
+import { configurePassport } from './config/passport.js';
 
 //configs
 const __dirname = import.meta.dirname;
@@ -37,6 +39,12 @@ app.use(
     },
   }),
 );
+
+//passport
+configurePassport();
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 //routes
 app.use(routes);

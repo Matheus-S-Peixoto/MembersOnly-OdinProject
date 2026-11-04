@@ -9,6 +9,12 @@ export const getRegisterPage = (req, res) => {
   });
 };
 
+export const getLoginPage = (req, res) => {
+  res.render('login', {
+    title: 'Login',
+  });
+};
+
 export const postRegisterUser = [
   validadeNewUser,
   async (req, res) => {
@@ -37,6 +43,6 @@ export const postRegisterUser = [
       }
     }
 
-    res.redirect('/');
+    res.redirect('/auth/login');
   },
 ];

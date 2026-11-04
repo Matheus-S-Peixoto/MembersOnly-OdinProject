@@ -2,12 +2,17 @@ import { query } from '../db/pool.js';
 
 export const findByUsername = async (username) => {
   const { rows } = await query(`SELECT * FROM users WHERE username = $1`, [username]);
+  return rows[0];
+};
 
-  if (rows.length === 0) {
-    return false;
-  }
+export const findById = async (id) => {
+  const { rows } = await query(`SELECT * FROM users WHERE id = $1`, [id]);
+  return rows[0];
+};
 
-  return rows[0].username === username;
+export const isUsernameInUse = async (username) => {
+  const { rows } = await query(`SELECT * FROM users WHERE username = $1`, [username]);
+  return rows[0]?.username === username;
 };
 
 export const createNewUser = async (prefname, username, password) => {

@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getRegisterPage, postRegisterUser } from '../controllers/authController.js';
+import { getRegisterPage, postRegisterUser, getLoginPage } from '../controllers/authController.js';
 
 const router = Router();
 
@@ -9,5 +9,7 @@ router.get('/', (req, res) => {
 
 router.get('/register', getRegisterPage);
 router.post('/register', postRegisterUser);
+
+router.get('/login', getLoginPage);
 
 export default router;

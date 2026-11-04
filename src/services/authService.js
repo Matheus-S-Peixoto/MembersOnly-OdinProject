@@ -1,16 +1,24 @@
 import * as authRepository from '../repository/userRepository.js';
-import bcrypt from 'bcryptjs';
+import { hashPassword } from './passwordService.js';
+
+export const findUserByUsername = async (username) => {
+  return await authRepository.findByUsername(username);
+};
+
+export const findUserById = async (id) => {
+  return await authRepository.findById(id);
+};
 
 export const registerNewUser = async (username, password, prefname) => {
   //verify if the username already exists on the db
-  const usernameExists = await authRepository.findByUsername(username);
+  const usernameInUse = await authRepository.isUsernameInUse(username);
 
-  if (usernameExists) {
+  if (usernameInUse) {
     throw new Error('Username already in use');
   }
 
   //hash the password
-  const hashedPassword = await bcrypt.hash(password, 10);
+  const hashedPassword = await hashPassword(password);
 
   //save the user to the db
   await authRepository.createNewUser(prefname, username, hashedPassword);
