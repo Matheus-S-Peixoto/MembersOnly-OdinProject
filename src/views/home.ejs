@@ -7,8 +7,20 @@
     <div class="message-pane">
       <%- include('./partials/nav.ejs') %>
 
-      <h2>username</h2>
-      <textarea class="message-text" style="resize: none" disabled>blablalbalba</textarea>
+      <% if(!locals.messages) { %>
+        <h2>No messages yet.</h2>
+      <% } else { %>  
+        <% messages.forEach(msg => { %>
+          <% if (locals.user.ismember) { %>
+            <h2><%= msg.username %></h2>
+            <p class="timestamp"><%= msg.posted_at %></p>
+          <% } %>
+          <textarea class="message-text" style="resize: none" disabled><%= msg.content %></textarea>
+          <% if (locals.user.isadimn) { %>
+            <a class="delete-button" href="/posts/<%= msg.id %>"></a>
+          <% } %>  
+        <% }); %>
+      <% } %>
     </div>
   </body>
 </html>

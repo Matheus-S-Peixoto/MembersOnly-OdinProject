@@ -5,11 +5,15 @@
 </head>
 <body>
   <%- include('./partials/nav.ejs') %>
+  
+  <% if (!locals.user.isadmin && locals.user.ismember) { %>
+    <a href="/auth/admin">Become an Admin</a>
+  <% } %>
 
   <% if (!user) { %>
     <h1>UNAUTHORIZED.</h1>
-  <% } else if (user.isadmin) { %>
-    <h1>You're already an admin!</h1>
+  <% } else if (user.ismember) { %>
+    <h1>You're already an member!</h1>
   <% } else { %>  
     <h1>DO YOU REALY WANT TO A PART OF THIS????</h1>
     <h2>ARE YOU SURE????</h2>

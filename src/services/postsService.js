@@ -1,8 +1,8 @@
-import { updateSetAdminTrue } from '../repository/userRepository.js';
+import { updateMembershipTrue } from '../repository/userRepository.js';
 
-export const makeUserAdmin = async (id) => {
+export const makeUserMember = async (id) => {
   try {
-    await updateSetAdminTrue(id);
+    await updateMembershipTrue(id);
   } catch (error) {
     return next(error);
   }

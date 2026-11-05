@@ -1,5 +1,4 @@
 import { validationResult, matchedData } from 'express-validator';
-import { validadeNewUser } from '../middlewares/validations.js';
 import { groupValidationErrors } from '../utils/groupValidationErrors.js';
 import * as authService from '../services/authService.js';
 
@@ -26,6 +25,17 @@ export const getLogout = (req, res, next) => {
 
     res.redirect('/');
   });
+};
+
+//GET ADMIN
+export const getAdmin = async (req, res) => {
+  try {
+    await authService.makeUserAdmin(req.user.id);
+
+    res.redirect('/');
+  } catch (error) {
+    return next(error);
+  }
 };
 
 //POST LOGIN

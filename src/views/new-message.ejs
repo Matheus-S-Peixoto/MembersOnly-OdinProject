@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head.ejs') %>
+  </head>
+  <body>
+    <%- include('./partials/nav.ejs') %>
+
+    <div class="register-pane">
+      <h1 class="register-title">New Message</h1>
+
+      <form class="register-form" action="/posts/new-message" method="post">
+        <div class="form-group">
+          <label for="content">Type your message:</label>
+          <input type="text" name="content" id="content" />
+          
+          <% if (locals.error) { %>
+            <p class="error-message"><%= error %></p>
+          <% } %>
+        
+        </div>
+        
+        
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>

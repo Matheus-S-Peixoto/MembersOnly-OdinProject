@@ -1,4 +1,4 @@
-import { makeUserAdmin } from '../services/postsService.js';
+import { makeUserMember } from '../services/postsService.js';
 
 export const getHomePage = async (req, res) => {
   res.render('home', {
@@ -20,14 +20,12 @@ export const getJoinClubPage = (req, res) => {
 export const postJoinClubForm = async (req, res, next) => {
   if (req.body.passcode === 'jon dere 130') {
     try {
-      await makeUserAdmin(req.user.id);
-
-      console.log(req.user);
+      await makeUserMember(req.user.id);
 
       res.render('join-club', {
         title: 'Join the Club',
         user: req.user,
-        message: "You're an ADMIN NOW!!!!",
+        message: "You're a MEMBER NOW!!!!",
       });
     } catch (error) {
       return next(error);

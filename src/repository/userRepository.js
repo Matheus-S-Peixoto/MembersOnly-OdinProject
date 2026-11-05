@@ -26,3 +26,7 @@ export const createNewUser = async (prefname, username, password) => {
 export const updateSetAdminTrue = async (id) => {
   await query(`UPDATE users SET isAdmin = true WHERE id = $1`, [id]);
 };
+
+export const updateMembershipTrue = async (id) => {
+  await query(`UPDATE users SET ismember = true WHERE id = $1`, [id]);
+};

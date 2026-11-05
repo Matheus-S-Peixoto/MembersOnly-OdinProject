@@ -9,6 +9,12 @@ export const findUserById = async (id) => {
   return await userRepository.findById(id);
 };
 
+//should implement some business rules to avoid
+//users typing the route and becoming admins.
+export const makeUserAdmin = async (id) => {
+  await userRepository.updateSetAdminTrue(id);
+};
+
 export const registerNewUser = async (username, password, prefname) => {
   //verify if the username already exists on the db
   const usernameInUse = await userRepository.isUsernameInUse(username);

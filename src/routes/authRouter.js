@@ -5,6 +5,7 @@ import {
   getLoginPage,
   postLoginUser,
   getLogout,
+  getAdmin,
 } from '../controllers/authController.js';
 import { validadeNewUser } from '../middlewares/validations.js';
 import { authenticateUser } from '../middlewares/authenticate.js';
@@ -22,5 +23,7 @@ router.get('/login', getLoginPage);
 router.post('/login', authenticateUser, postLoginUser);
 
 router.get('/logout', getLogout);
+
+router.get('/admin', getAdmin);
 
 export default router;
