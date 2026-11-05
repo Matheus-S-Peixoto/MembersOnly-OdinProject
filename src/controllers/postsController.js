@@ -1,10 +1,18 @@
 import { matchedData, validationResult } from 'express-validator';
-import { makeUserMember, sendNewMessage } from '../services/postsService.js';
+import {
+  makeUserMember,
+  sendNewMessage,
+  getAllMessages,
+  deleteMessageById,
+} from '../services/postsService.js';
 
 export const getHomePage = async (req, res) => {
+  const messagesArray = await getAllMessages();
+
   res.render('home', {
     title: 'Home Page',
     user: req.user,
+    messages: messagesArray,
   });
 };
 
@@ -18,7 +26,19 @@ export const getJoinClubPage = (req, res) => {
   });
 };
 
-export const postNewMessageForm = async (req, res) => {
+export const getDeleteMessage = async (req, res, next) => {
+  const messageId = req.params.id;
+
+  try {
+    await deleteMessageById(messageId);
+
+    res.redirect('/');
+  } catch (error) {
+    return next(error);
+  }
+};
+
+export const postNewMessageForm = async (req, res, next) => {
   if (!req.user) {
     res.redirect('/auth/login');
   }

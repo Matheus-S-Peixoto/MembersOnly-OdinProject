@@ -1,26 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <%- include('./partials/head.ejs') %>
+    <link rel="stylesheet" href="/styles/home.css">
   </head>
+
   <body>
     <div class="message-pane">
       <%- include('./partials/nav.ejs') %>
 
-      <% if(!locals.messages) { %>
-        <h2>No messages yet.</h2>
-      <% } else { %>  
-        <% messages.forEach(msg => { %>
-          <% if (locals.user.ismember) { %>
-            <h2><%= msg.username %></h2>
-            <p class="timestamp"><%= msg.posted_at %></p>
-          <% } %>
-          <textarea class="message-text" style="resize: none" disabled><%= msg.content %></textarea>
-          <% if (locals.user.isadimn) { %>
-            <a class="delete-button" href="/posts/<%= msg.id %>"></a>
-          <% } %>  
-        <% }); %>
-      <% } %>
+      <main class="messages-container">
+        <div class="page-heading">
+          <h1>Community Messages</h1>
+          <p>See what everyone is talking about.</p>
+        </div>
+
+        <% if (!messages || messages.length === 0) { %>
+          <div class="empty-state">
+            <h2>No messages yet.</h2>
+            <p>Be the first to share something with the community.</p>
+          </div>
+        <% } else { %>
+
+          <% messages.forEach(msg => { %>
+            <article class="message-card">
+
+              <% if (locals.user?.ismember) { %>
+                <div class="message-header">
+                  <h2><%= msg.username %></h2>
+
+                  <time class="timestamp"
+                    datetime="<%= new Date(msg.posted_at).toISOString() %>">
+                    <%= new Date(msg.posted_at).toLocaleString('pt-BR', {
+                      day: '2-digit',
+                      month: 'short',
+                      year: 'numeric',
+                      hour: '2-digit',
+                      minute: '2-digit',
+                      timeZone: 'America/Sao_Paulo'
+                    }) %>
+                  </time>
+                </div>
+              <% } %>
+
+              <p class="message-text"><%= msg.content %></p>
+
+              <% if (locals.user?.isadmin) { %>
+                <a class="delete-button"
+                  href="/posts/delete/<%= msg.m_id %>">
+                  Delete message
+                </a>
+              <% } %>
+
+            </article>
+          <% }); %>
+
+        <% } %>
+      </main>
     </div>
   </body>
 </html>

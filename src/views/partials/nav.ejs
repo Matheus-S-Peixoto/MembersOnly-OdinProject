@@ -1,32 +1,18 @@
 <nav>
-  <!-- ADMIN -->
-  <% if(locals.user && user.isadmin) { %>
-     <% if(locals.title !== 'Join the Club') { %>
-      <a href="/posts/join-club">Join the Club</a>
+  <!-- LOGGED IN -->
+  <% if(locals.user) { %>
+    <% if(!locals.user.ismember) { %>
+      <% if(locals.title !== 'Join the Club') { %>
+        <a href="/posts/join-club">Join the Club</a>
+      <% } %>  
     <% } %>  
-    
-    <a href="/auth/logout">Logout</a>
-
-    <% if(locals.title !== 'Home Page') { %>
-      <a href="/posts/">Home</a>  
-    <% } %>
-
-    <% if(locals.title !== 'New Message') { %>
-      <a href="/posts/new-message">New Message</a>  
-    <% } %>
-    <!-- LOGGED IN -->
-  <% } else if(locals.user && !user.isadmin) { %>
-    <% if(locals.title !== 'Join the Club') { %>
-      <a href="/posts/join-club">Join the Club</a>
-    <% } %>  
-    
     <a href="/auth/logout">Logout</a>
     
     <% if(locals.title !== 'Home Page') { %>
       <a href="/posts/">Home</a>  
     <% } %>
 
-    <% if(locals.title !== 'New Message') { %>
+    <% if(locals.title === 'Home Page') { %>
       <a href="/posts/new-message">New Message</a>  
     <% } %>
     
