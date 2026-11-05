@@ -26,3 +26,14 @@ export const validadeNewUser = [
     .isLength({ min: 8 })
     .withMessage('Password must have at least 8 characters'),
 ];
+
+export const validateNewMessage = [
+  body('content')
+    .trim()
+    .notEmpty()
+    .withMessage('fuck you, write something')
+    .bail()
+    .escape()
+    .isLength({ max: 500 })
+    .withMessage('message limit is 500 chars'),
+];

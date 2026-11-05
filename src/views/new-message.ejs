@@ -12,10 +12,12 @@
       <form class="register-form" action="/posts/new-message" method="post">
         <div class="form-group">
           <label for="content">Type your message:</label>
-          <input type="text" name="content" id="content" />
+          <textarea name="content" id="content"><%= locals.formData?.content || '' %></textarea>
           
-          <% if (locals.error) { %>
-            <p class="error-message"><%= error %></p>
+          <% if (locals.errors) { %>
+            <% errors.forEach((error) => { %>
+              <p class="error-message"><%= error.msg %></p>
+            <% }) %>
           <% } %>
         
         </div>

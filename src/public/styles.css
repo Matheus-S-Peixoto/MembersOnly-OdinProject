@@ -54,6 +54,14 @@ nav a {
   font-size: 0.6em;
 }
 
+.form-group #content {
+  margin: 10px;
+  width: 20dvw;
+  min-height: 20vh;
+  font-size: 0.6em;
+  resize: none;
+}
+
 .register-form button {
   margin: 4vh;
   padding: 1vh;
